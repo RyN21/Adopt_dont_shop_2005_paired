@@ -1,0 +1,27 @@
+<% content_for :title, "#{@shelter.name} Pets - Adopt Don't Shop" %>
+
+  <header>
+  </header>
+  <nav>
+    <ul>
+      <li><%= link_to "All Pets", "/pets" %></li>
+      <li><%= link_to "All Shelters", "/shelters" %></li>
+    </ul>
+  </nav>
+  <section class="index">
+    <h1><%= "#{@shelter.name} Available Pets!" %></h1>
+
+    <% @pets.each do |pet| %>
+      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+        <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
+        <p>Age: <%= pet.age %></p>
+        <p>Sex: <%= pet.sex %></p>
+        <p>Adoption Status: <%= pet.status %></p>
+        <p>Shelter: <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %></p><br><br>
+        <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p><br>
+        <%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %><br><br>
+    <% end %>
+
+    <h3>Put a pet up for adoption</h3>
+    <%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %><br><br>
+    </section>

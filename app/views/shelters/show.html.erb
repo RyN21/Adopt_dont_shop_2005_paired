@@ -1,0 +1,24 @@
+<% content_for :title, "#{@shelter.name} - Adopt Don't Shop" %>
+
+  <header>
+  </header>
+  <nav>
+    <ul>
+      <li><%= link_to "All Pets", "/pets" %></li>
+      <li><%= link_to "All Shelters", "/shelters" %></li>
+    </ul>
+  </nav>
+  <section class="show">
+    <h1><%= @shelter.name %></h1>
+
+    <p>Address: <%= @shelter.address %></p><br>
+    <p>City: <%= @shelter.city %></p><br>
+    <p>State: <%= @shelter.state %></p><br>
+    <p>Zip code: <%= @shelter.zip_code %></p><br><br>
+
+    <h2><%= link_to "Available Pets", "/shelters/#{@shelter.id}/pets" %></h2>
+
+    <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %><br><br><br>
+
+    <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  </section>

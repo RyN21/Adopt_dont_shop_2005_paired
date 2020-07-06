@@ -1,0 +1,23 @@
+<% content_for :title, "#{@pet.name} - Adopt Don't Shop" %>
+
+  <header>
+  </header>
+  <nav>
+    <ul>
+      <li><%= link_to "All Pets", "/pets" %></li>
+      <li><%= link_to "All Shelters", "/shelters" %></li>
+    </ul>
+  </nav>
+  <section class="show">
+    <h1><%= "Meet #{@pet.name}!" %></h1>
+    <%= image_tag @pet.image, alt: "Photo of #{@pet.name}", title: "Photo of #{@pet.name}" %>
+    <p>About: <%= @pet.description %></p>
+    <p>Age: <%= @pet.age %></p>
+    <p>Sex: <%= @pet.sex %></p>
+    <p>Adoption Status: <%= @pet.status %></p>
+    <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
+
+    <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br><br>
+
+    <%= button_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>
+  </section>

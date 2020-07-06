@@ -1,0 +1,51 @@
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+nav {
+  color: white;
+  background: #ff8b6c;
+  /* margin-bottom: 30px; */
+}
+nav ul {
+  text-align: left;
+}
+nav li {
+  color: purple;
+  display: inline-block;
+  padding: 17px 10px;
+  text-decoration: underline;
+}
+nav a {
+  color: white;
+
+}
+section {
+  text-align: center
+}
+section h1 {
+  text-decoration: underline
+  /* padding: 10px; */
+}
+section img {
+  border-radius: 8px;
+  /* align: center; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  height: auto;
+}
+.index {
+  background: lightgrey;
+  margin: 30px;
+  padding: 10px
+}
+.index img {
+  border-radius: 8px;
+  /* align: center; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  height: auto;
+}
