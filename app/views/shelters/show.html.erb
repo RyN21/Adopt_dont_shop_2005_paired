@@ -22,3 +22,12 @@
 
     <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
   </section>
+
+  <section>
+    <h1>Reviewa</h1>
+    <% @reviews.each do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Content: <%= review.content %></p>
+    <% end %>
+  </section>

@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20200707000910) do
     t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.integer "rating"
+    t.string "content"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "shelter_id"
+    t.index ["shelter_id"], name: "index_reviews_on_shelter_id"
+  end
+
   create_table "shelters", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,4 +50,5 @@ ActiveRecord::Schema.define(version: 20200707000910) do
   end
 
   add_foreign_key "pets", "shelters"
+  add_foreign_key "reviews", "shelters"
 end
