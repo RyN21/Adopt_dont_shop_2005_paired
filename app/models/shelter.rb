@@ -6,4 +6,10 @@ class Shelter < ApplicationRecord
   # validates_presence_of :zip_code
 
   has_many :pets
+
+  def adoptable_pets
+     pets.find_all do |pet|
+      pet.status == true
+    end
+  end
 end
