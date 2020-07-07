@@ -1,0 +1,12 @@
+<%= form_tag "/shelters/#{@shelter.id}" do %>
+  <%= label_tag :Title %>
+  <%= text_field_tag :title %>
+  <%= label_tag :Rating %>
+  <%= text_field_tag :rating %>
+  <%= label_tag :Content %>
+  <%= text_field_tag :content %>
+  <%= label_tag :image %>
+  <%= text_field_tag :image %>
+
+  <%= submit_tag "Add" %>
+<% end %>
