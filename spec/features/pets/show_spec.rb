@@ -12,6 +12,6 @@ RSpec.describe "pet show page" do
     expect(page).to have_content(dog.age)
     expect(page).to have_content(dog.sex)
     expect(page).to have_content(dog.description)
-    expect(page).to have_content("Adoption Status: #{dog.status}")
+    expect(page).to have_content("Adoption Status: Adoptable")
   end
 end

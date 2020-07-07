@@ -23,8 +23,7 @@
       <%= text_field_tag :description %>
       <%= label_tag :image %>
       <%= text_field_tag :image %>
-      <%= label_tag "Status" %>
-      <%= text_field_tag :status, "Adoptable", :readonly => true %>
+      <%=  hidden_field_tag :status, true %>
       <%= submit_tag "Create Pet" %>
     <% end %>
   </section>

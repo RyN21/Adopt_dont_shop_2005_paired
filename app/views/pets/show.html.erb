@@ -14,7 +14,12 @@
     <p>About: <%= @pet.description %></p>
     <p>Age: <%= @pet.age %></p>
     <p>Sex: <%= @pet.sex %></p>
-    <p>Adoption Status: <%= @pet.status %></p>
+    <p>Adoption Status:
+      <% if @pet.status ==true %>
+      Adoptable
+      <% else %>
+      Adoption Pending
+      <%  end %></p>
     <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
 
     <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br><br>
