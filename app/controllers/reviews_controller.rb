@@ -5,9 +5,34 @@ class ReviewsController < ApplicationController
 
   def create
     @shelter = Shelter.find(params[:id])
-    review = @shelter.reviews.create(review_params)
-    require "pry"; binding.pry
-    redirect_to "/shelters/#{@shelter.id}"
+    @review = @shelter.reviews.new(review_params)
+    if @review.save
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash.alert = "Need additional information.\nPlease fill in title, rating, and content to submit review."
+      redirect_to "/shelters/#{@shelter.id}/reviews/new"
+    end
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    if review.save
+      redirect_to "/shelters/#{review.shelter_id}"
+    else
+      flash.alert = "Need additional information.\nPlease fill in title, rating, and content to submit review."
+      redirect_to "/reviews/#{review.id}/edit"
+    end
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to "/shelters/#{review.shelter_id}"
   end
 
   private
@@ -15,11 +40,3 @@ class ReviewsController < ApplicationController
     params.permit(:title, :rating, :content, :image)
   end
 end
-#
-#   def edit
-#     @review = Review.find(params[:id])
-#     @review.update(review_params)
-#     redirect_to "/shelters/#{@review.shelter_id}"
-#   end
-#
-# end

@@ -16,7 +16,6 @@ RSpec.describe "shelters index page", type: :feature do
     visit "/shelters"
     click_button "Delete Hope"
     expect(page).to_not have_content(shelter_1.name)
-
     click_on "Edit Paw Pals"
     expect(current_path).to eq("/shelters/#{shelter_2.id}/edit")
   end
