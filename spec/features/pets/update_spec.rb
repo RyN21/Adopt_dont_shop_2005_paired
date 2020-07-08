@@ -16,7 +16,6 @@ RSpec.describe "pet update page" do
     fill_in :age, with: 5
     fill_in :sex, with: "Female"
     fill_in :description, with: "She is a dog"
-    fill_in :status, with: "Adoption Pending"
     fill_in :image, with: "https://www.pennmedicine.org/news/-/media/images/pr%20news/news/2018/may/summerdog.ashx?h=263&w=400&la=en"
 
     click_button "Update Pet"
@@ -27,7 +26,6 @@ RSpec.describe "pet update page" do
     expect(page).to have_content("Age: 5")
     expect(page).to have_content("Sex: Female")
     expect(page).to have_content("She is a dog")
-    expect(page).to have_content("Adoption Pending")
 
   end
 end

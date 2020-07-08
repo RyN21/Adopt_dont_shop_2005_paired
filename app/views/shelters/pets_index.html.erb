@@ -16,7 +16,7 @@
         <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
         <p>Age: <%= pet.age %></p>
         <p>Sex: <%= pet.sex %></p>
-        <p>Adoption Status: <%= pet.status %></p>
+        <p>Adoption Status: Adoptable</p>
         <p>Shelter: <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %></p><br><br>
         <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p><br>
         <%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %><br><br>

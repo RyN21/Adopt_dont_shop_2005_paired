@@ -7,4 +7,10 @@ class Shelter < ApplicationRecord
 
   has_many :pets
   has_many :reviews
+
+  def adoptable_pets
+     pets.find_all do |pet|
+      pet.status == true
+    end
+  end
 end
