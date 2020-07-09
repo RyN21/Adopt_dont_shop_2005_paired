@@ -1,13 +1,6 @@
 <% content_for :title, "#{@shelter.name} - Adopt Don't Shop" %>
 
-  <header>
-  </header>
-  <nav>
-    <ul>
-      <li><%= link_to "All Pets", "/pets" %></li>
-      <li><%= link_to "All Shelters", "/shelters" %></li>
-    </ul>
-  </nav>
+
   <section class="show">
     <h1><%= @shelter.name %></h1>
 
@@ -21,4 +14,15 @@
     <%= link_to "Update Shelter", "/shelters/#{@shelter.id}/edit" %><br><br><br>
 
     <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
+  </section><br><br><br><br>
+
+  <section>
+    <h1>Reviews</h1>
+    <%= link_to "Add Review", "/shelters/#{@shelter.id}/reviews/new" %>
+    <% @shelter.reviews.each do |review| %>
+    <p>Title: <%= review.title %></p>
+    <p>Rating: <%= review.rating %> stars</p>
+    <p>Content: <%= review.content %></p>
+    <%= link_to "Edit #{review.title}", "/reviews/#{review.id}/edit" %><br><br><br>
+    <% end %>
   </section>
