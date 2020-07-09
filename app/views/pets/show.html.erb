@@ -1,13 +1,6 @@
 <% content_for :title, "#{@pet.name} - Adopt Don't Shop" %>
 
-  <header>
-  </header>
-  <nav>
-    <ul>
-      <li><%= link_to "All Pets", "/pets" %></li>
-      <li><%= link_to "All Shelters", "/shelters" %></li>
-    </ul>
-  </nav>
+
   <section class="show">
     <h1><%= "Meet #{@pet.name}!" %></h1>
     <%= image_tag @pet.image, alt: "Photo of #{@pet.name}", title: "Photo of #{@pet.name}" %>
@@ -21,6 +14,8 @@
       Adoption Pending
       <%  end %></p>
     <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
+
+    <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
 
     <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br><br>
 

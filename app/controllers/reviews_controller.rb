@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
   def create
     @shelter = Shelter.find(params[:id])
     review = @shelter.reviews.create(review_params)
-    require "pry"; binding.pry
     redirect_to "/shelters/#{@shelter.id}"
   end
 
