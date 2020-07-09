@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Shelter review creatioin" do
-  before :all do
+  before :each do
     @shelter_1 = Shelter.create!(name: "Paw Pals", address: "123 Main Street", city: "Denver", state: "CO", zip_code: 80202)
   end
   it "can create a new review" do
