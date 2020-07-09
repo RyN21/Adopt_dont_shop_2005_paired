@@ -1,12 +1,31 @@
+
+<% content_for :title, "Add Review - Adopt Don't Shop" %>
+
+  <header>
+  </header>
+  <nav>
+    <ul>
+      <li><%= link_to "All Pets", "/pets" %></li>
+      <li><%= link_to "All Shelters", "/shelters" %></li>
+    </ul>
+  </nav>
+  <section class="form">
+    <h1>Add Review</h1><br>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div><br><br><br>
+<% end %>
+
 <%= form_tag "/shelters/#{@shelter.id}/reviews" do %>
   <%= label_tag :title %>
-  <%= text_field_tag :title %>
+  <%= text_field_tag :title %><br>
   <%= label_tag :rating %>
-  <%= text_field_tag :rating %>
+  <%= text_field_tag :rating %><br>
   <%= label_tag :content %>
-  <%= text_field_tag :content %>
+  <%= text_field_tag :content %><br>
   <%= label_tag :image %>
-  <%= text_field_tag :image %>
+  <%= text_field_tag :image %><br><br>
 
   <%= submit_tag "Submit" %>
 <% end %>
