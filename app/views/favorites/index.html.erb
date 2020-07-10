@@ -1,0 +1,10 @@
+<% content_for :title, "All Pets - Adopt Don't Shop" %>
+
+  <section class="index">
+    <h1>Favorite Pets</h1>
+
+    <% @pets.each do |pet| %>
+      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+        <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
+    <% end %>
+  </section>
