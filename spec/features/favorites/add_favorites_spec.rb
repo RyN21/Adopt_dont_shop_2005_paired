@@ -22,6 +22,22 @@ RSpec.describe "When a user adds pets to favorites" do
       expect(page).to have_content("Favorites: 1")
     # end
   end
+
+  it "can't favorite a pet more than once" do
+    visit "/pets/#{@dog.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
+    expect(page).to have_content("Favorites: 1")
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+    
+    expect(page).to have_content("Favorites: 1")
+  end
 end
 
 # User Story 9, Favorite Creation
