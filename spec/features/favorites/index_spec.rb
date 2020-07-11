@@ -28,4 +28,22 @@ RSpec.describe "Favorite Index Page" do
     expect(page).to have_xpath("//img[contains(@src,'#{@dog.image}')]")
     expect(page).to have_xpath("//img[contains(@src,'#{@dog2.image}')]")
   end
+
+  it "has link to favorites index page from navigation bar" do
+    visit "/pets/#{@dog.id}"
+    click_button "Add to Favorites"
+
+
+    visit '/shelters'
+
+    click_on "Favorites:"
+
+    expect(current_path).to eq('/favorites')
+
+    visit '/pets'
+
+    click_on "Favorites:"
+
+    expect(current_path).to eq('/favorites')
+  end
 end
