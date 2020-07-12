@@ -51,6 +51,49 @@ RSpec.describe "Favorite Index Page" do
   it "has no favorites page" do
     visit '/favorites'
 
-    expect(page).to have_content("You have not added any favorites to you list.")
+    expect(page).to have_content("You have no favorites in you list.")
+  end
+
+  it "can remove all favorites from favorite list" do
+    visit "/pets/#{@dog.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
+    visit "/pets/#{@dog2.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
+    visit '/favorites'
+
+    expect(page).to have_content("Jake")
+    expect(page).to have_content("Charley")
+
+    click_button "Remove all favorited pets"
+
+    expect(current_path).to eq('/favorites')
+
+    expect(page).to have_content("You have no favorites in you list.")
+    expect(page).to have_content("Favorites: 0")
+
+    visit "/pets/#{@dog.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
+    visit "/pets/#{@dog2.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
+    visit '/favorites'
+
+    expect(page).to have_content("Jake")
+    expect(page).to have_content("Charley")
   end
 end

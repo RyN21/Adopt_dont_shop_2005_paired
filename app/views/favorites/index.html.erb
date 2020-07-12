@@ -2,7 +2,7 @@
 
   <section class="index">
     <h1>Favorite Pets</h1>
-    <p> You have not added any favorites to you list. </p> <% if @favorite_pets == {} %>
+    <p> You have no favorites in you list. </p> <% if @favorite_pets == {} %>
     <% else %>
       <% @pets.each do |pet| %>
         <section id=pet-<%= pet.id %>>
@@ -13,3 +13,5 @@
       <% end %>
     <% end %>
   </section>
+
+  <p><%= button_to "Remove all favorited pets", "/favorites", method: :delete %></p>
