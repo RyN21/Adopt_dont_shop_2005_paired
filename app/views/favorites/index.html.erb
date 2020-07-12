@@ -4,7 +4,10 @@
     <h1>Favorite Pets</h1>
 
     <% @pets.each do |pet| %>
-      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
-        <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
+      <section id=pet-<%= pet.id %>>
+        <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+        <p><%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %></p>
+        <%= button_to "Remove from favorites", "/favorites/#{pet.id}", method: :delete %>
+      </section>
     <% end %>
   </section>
