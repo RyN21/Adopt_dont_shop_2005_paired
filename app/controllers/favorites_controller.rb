@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     @pets = @pets_ids.map do |id|
       Pet.find(id)
     end
+    @apps = App.all
   end
 
   def update

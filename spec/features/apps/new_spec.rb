@@ -34,9 +34,10 @@ RSpec.describe "new application page" do
 
     expect(current_path).to eq("/favorites")
     expect(page).to have_content("Application submitted successfully")
-
-    expect(page).to_not have_content(@dog.name)
-    expect(page).to_not have_content(@dog2.name)
+    within(".index") do
+      expect(page).to_not have_content(@dog.name)
+      expect(page).to_not have_content(@dog2.name)
+    end
   end
   it "should flash error and return to new app when incomplete form" do
     visit "/pets/#{@dog.id}"

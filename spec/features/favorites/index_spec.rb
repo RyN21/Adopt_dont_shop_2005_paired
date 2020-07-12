@@ -96,4 +96,32 @@ RSpec.describe "Favorite Index Page" do
     expect(page).to have_content("Jake")
     expect(page).to have_content("Charley")
   end
+  it "has a section for pets with applications" do
+    visit "/pets/#{@dog.id}"
+    click_button "Add to Favorites"
+    visit "/pets/#{@dog2.id}"
+    click_button "Add to Favorites"
+    expect(page).to have_content("Favorites: 2")
+
+    visit "/favorites"
+    click_on "Apply Now"
+    expect(current_path).to eq("/apps/new")
+
+    select(@dog.name)
+    fill_in :name, with: "Name"
+    fill_in :address, with: "Address"
+    fill_in :city, with: "City"
+    fill_in :state, with: "State"
+    fill_in :zip, with: "Zip"
+    fill_in :phone_number, with: "Phone Number"
+    fill_in :description, with: "Description"
+
+    click_button "Submit"
+
+    expect(page).to have_content("Pending Applications")
+
+    within (".apps") do
+      expect(page).to have_content(@dog.name)
+    end
+  end
 end

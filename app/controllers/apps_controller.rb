@@ -8,10 +8,11 @@ class AppsController < ApplicationController
   def create
     application = App.new(app_params)
     if application.save
-      flash[:notice] = "Application submitted successfully."
       params[:favorite_pets].each do |pet_id|
         session[:favorite].delete(pet_id)
+        PetApp.create(pet_id: pet_id, app_id: application.id)
       end
+      flash[:notice] = "Application submitted successfully."
       redirect_to "/favorites"
     else
       flash[:error] = "Application not submitted. Please fill out all required fields"
