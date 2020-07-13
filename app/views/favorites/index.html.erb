@@ -1,0 +1,17 @@
+<% content_for :title, "All Pets - Adopt Don't Shop" %>
+
+  <section class="index">
+    <h1>Favorite Pets</h1>
+    <p> You have no favorites in you list. </p> <% if @favorite_pets == {} %>
+    <% else %>
+      <% @pets.each do |pet| %>
+        <section id=pet-<%= pet.id %>>
+          <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+          <p><%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %></p>
+          <%= button_to "Remove from favorites", "/favorites/#{pet.id}", method: :delete %>
+        </section>
+      <% end %>
+    <% end %>
+  </section>
+
+  <p><%= button_to "Remove all favorited pets", "/favorites", method: :delete %></p>
