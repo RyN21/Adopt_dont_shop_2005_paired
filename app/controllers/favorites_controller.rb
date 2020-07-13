@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
       Pet.find(id)
     end
     @apps = App.all
+    # Only send one object to view
   end
 
   def update

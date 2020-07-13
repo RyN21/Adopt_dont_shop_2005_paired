@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   def new
     @favorites = favorite.favorite_pets.map do |pet|
       Pet.find(pet[0])
-    end
+    end # Refactor in model?
   end
 
   def create

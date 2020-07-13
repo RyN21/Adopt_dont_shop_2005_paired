@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     else
       flash.alert = "Need additional information.\nPlease fill in title, rating, and content to submit review."
       redirect_to "/shelters/#{@shelter.id}/reviews/new"
-    end
+    end #refactor instance vairable?
   end
 
   def edit

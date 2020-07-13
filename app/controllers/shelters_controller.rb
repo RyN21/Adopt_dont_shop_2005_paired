@@ -5,7 +5,7 @@ class SheltersController < ApplicationController
 
   def show
     @shelter = Shelter.find(params[:id])
-    @reviews = @shelter.reviews
+    @reviews = @shelter.reviews # call in view
   end
 
   def new
@@ -33,7 +33,7 @@ class SheltersController < ApplicationController
 
   def pets_index
     @shelter = Shelter.find(params[:id])
-    @pets = @shelter.adoptable_pets
+    @pets = @shelter.adoptable_pets #call in view
   end
 
   private
