@@ -36,12 +36,3 @@ RSpec.describe "When visiting a shelter show page" do
     expect(page).to_not have_content(@review_2.title)
   end
 end
-
-
-# [ ] done
-#
-# User Story 28, Deleting Shelters Deletes its Reviews
-#
-# As a visitor
-# When I delete a shelter
-# All reviews associated with that shelter are also deleted
