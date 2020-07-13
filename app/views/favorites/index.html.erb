@@ -14,4 +14,16 @@
     <% end %>
   </section>
 
+  <p><%= link_to "Apply Now", "/apps/new" %>
   <p><%= button_to "Remove all favorited pets", "/favorites", method: :delete %></p>
+
+  <section class="apps">
+    <h2>Pending Applications</h2>
+    <% @apps.each do |app| %>
+      <% app.pets.each do |pet| %>
+        <div class="app-<%= pet.id %>">
+        <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+        </div>
+      <% end %>
+    <% end %>
+  </section>
