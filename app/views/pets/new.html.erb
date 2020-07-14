@@ -5,8 +5,8 @@
     <h1>Create New Pet</h1>
 
     <%= render partial: 'pet_form', locals: { path: "/shelters/#{@shelter.id}/pets",
-                                              method: :post,
-                                              button: "Create Pet",
-                                              pet: @pet = Pet.new } %>
+                                             method: :post,
+                                             button: "Create Pet",
+                                             pet: @pet = Pet.new } %>
 
   </section>

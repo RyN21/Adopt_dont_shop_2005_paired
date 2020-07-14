@@ -9,6 +9,6 @@
   <%= text_field_tag :description, @pet.description %><br><br>
   <%= label_tag :image %><br>
   <%= text_field_tag :image, @pet.image %><br><br><br>
-
+  <%= hidden_field_tag :status, true %>
   <%= submit_tag button %>
 <% end %>
