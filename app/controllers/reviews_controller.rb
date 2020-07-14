@@ -4,15 +4,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @shelter = Shelter.find(params[:id])
+    shelter = Shelter.find(params[:id])
 
-    @review = @shelter.reviews.new(review_params)
-    if @review.save
-      redirect_to "/shelters/#{@shelter.id}"
+    review = shelter.reviews.new(review_params)
+    if review.save
+      redirect_to "/shelters/#{shelter.id}"
     else
       flash.alert = "Need additional information.\nPlease fill in title, rating, and content to submit review."
-      redirect_to "/shelters/#{@shelter.id}/reviews/new"
-    end #refactor instance vairable?
+      redirect_to "/shelters/#{shelter.id}/reviews/new"
+    end
   end
 
   def edit

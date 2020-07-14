@@ -29,8 +29,3 @@ RSpec.describe "delete pet" do
     expect(page).to_not have_selector(:link_or_button, 'Delete Finn')
   end
 end
-
-# When I visit the pets index page or a shelter pets index page
-# Next to every pet, I see a link to delete that pet
-# When I click the link
-# I should be taken to the pets index page where I no longer see that pet

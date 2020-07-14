@@ -4,19 +4,9 @@
   <section class="form">
     <h1>Create New Pet</h1>
 
+    <%= render partial: 'pet_form', locals: { path: "/shelters/#{@shelter.id}/pets",
+                                             method: :post,
+                                             button: "Create Pet",
+                                             pet: @pet = Pet.new } %>
 
-    <%= form_tag "/shelters/#{@shelter.id}/pets" do %>
-      <%= label_tag :name %>
-      <%= text_field_tag :name %>
-      <%= label_tag :age %>
-      <%= text_field_tag :age %>
-      <%= label_tag :sex %>
-      <%= text_field_tag :sex %>
-      <%= label_tag :description %>
-      <%= text_field_tag :description %>
-      <%= label_tag :image %>
-      <%= text_field_tag :image %>
-      <%=  hidden_field_tag :status, true %>
-      <%= submit_tag "Create Pet" %>
-    <% end %>
   </section>
