@@ -5,6 +5,10 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    if !@pet.status
+      petapp = @pet.pet_apps.find_by(approved: "approved")
+      @app = App.find(petapp.app_id)
+    end
   end
 
   def new
@@ -12,9 +16,15 @@ class PetsController < ApplicationController
   end
 
   def create
-    @shelter = Shelter.find(params[:id])
-    pet = @shelter.pets.create(pet_params)
-    redirect_to "/shelters/#{@shelter.id}/pets"
+    shelter = Shelter.find(params[:id])
+
+    pet = shelter.pets.new(pet_params)
+    if pet.save
+      redirect_to "/shelters/#{shelter.id}/pets"
+    else
+      flash.alert = "Additional information required"
+      redirect_to "/shelters/#{shelter.id}/pets/new"
+    end
   end
 
   def edit
@@ -22,14 +32,28 @@ class PetsController < ApplicationController
   end
 
   def update
-    @pet = Pet.find(params[:id])
-    @pet.update(pet_params)
-    redirect_to "/pets/#{@pet.id}"
+    pet = Pet.find(params[:id])
+    pet.update(pet_params)
+    if pet.save
+      redirect_to "/pets/#{pet.id}"
+    else
+      flash.alert = "Additional information required"
+      redirect_to "/pets/#{pet.id}/edit"
+    end
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    redirect_to "/pets"
+    if session[:favorite] == nil
+      Pet.destroy(params[:id])
+      redirect_to "/pets"
+    elsif session[:favorite].include?(params[:id])
+      session[:favorite].delete(params[:id])
+      Pet.destroy(params[:id])
+      redirect_to "/pets"
+    else
+      Pet.destroy(params[:id])
+      redirect_to "/pets"
+    end
   end
 
   private

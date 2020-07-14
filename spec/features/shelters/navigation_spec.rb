@@ -16,11 +16,15 @@ RSpec.describe "Navigation to shelter page" do
     expect(current_path).to eq("/shelters/#{shelter_2.id}")
 
     visit "/shelters/#{shelter_1.id}/pets"
+    within(".pet_list")do
     click_on "Paw Pals"
+    end
     expect(current_path).to eq("/shelters/#{shelter_1.id}")
 
     visit "/shelters/#{shelter_2.id}/pets"
+    within(".pet_list")do
     click_on "New Friends"
+    end
     expect(current_path).to eq("/shelters/#{shelter_2.id}")
 
     visit "/pets"
@@ -40,3 +44,8 @@ RSpec.describe "Navigation to shelter page" do
     expect(current_path).to eq("/shelters/#{shelter_2.id}")
   end
 end
+
+
+# within(".show") do
+#   click_button "Add to Favorites"
+# end

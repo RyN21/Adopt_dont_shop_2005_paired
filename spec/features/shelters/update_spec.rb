@@ -1,16 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe 'Shelter Update' do
-  it "can edit a specific shelter info" do
-    shelter_1 = Shelter.create(name: "Hope", address: "123 Main Street", city: "Denver", state: "CO", zip_code: 80202)
+  before :each do
+    @shelter_1 = Shelter.create(name: "Hope", address: "123 Main Street", city: "Denver", state: "CO", zip_code: 80202)
+  end
 
-    visit "/shelters/#{shelter_1.id}"
+  it "can edit a specific shelter info" do
+
+    visit "/shelters/#{@shelter_1.id}"
 
     expect(page).to_not have_content("New Friends")
 
     click_on "Update Shelter"
 
-    expect(current_path).to eq("/shelters/#{shelter_1.id}/edit")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
 
     fill_in :name, with: "New Friends"
     fill_in :address, with: "7862 Ivy Ct"
@@ -20,15 +23,51 @@ RSpec.describe 'Shelter Update' do
 
     click_button "Update Shelter"
 
-    expect(current_path).to eq("/shelters/#{shelter_1.id}")
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}")
     expect(page).to have_content("New Friends")
     expect(page).to have_content("7862 Ivy Ct")
     expect(page).to have_content("Centennial")
     expect(page).to have_content("WY")
     expect(page).to have_content("90210")
   end
+
+  it "if not all information is filled out, a flash message appears" do
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to_not have_content("New Friends")
+
+    click_on "Update Shelter"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+
+    fill_in :name, with: "New Friends"
+    fill_in :address, with: "7862 Ivy Ct"
+    fill_in :city, with: ""
+    fill_in :state, with: "WY"
+    fill_in :zip_code, with: 90210
+
+    click_button "Update Shelter"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
+    expect(page).to have_content("Need additional information")
+  end
 end
 
-# Then a `PATCH` request is sent to '/shelters/:id',
-# the shelter's info is updated,
-# and I am redirected to the Shelter's Show page where I see the shelter's updated info
+
+# **************************************
+# **************************************
+# **************************************
+# **************************************
+#
+# User Story 29, Flash Messages for Shelter Create and Update
+#
+# As a visitor
+# When I am updating or creating a new shelter
+# If I try to submit the form with incomplete information
+# I see a flash message indicating which field(s) I am missing
+#
+# **************************************
+# **************************************
+# **************************************
+# **************************************

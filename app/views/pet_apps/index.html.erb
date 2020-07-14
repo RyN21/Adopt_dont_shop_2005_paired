@@ -1,0 +1,11 @@
+<% content_for :title, "#{@pet.name} Applications - Adopt Don't Shop" %>
+<section class="show">
+  <% if @pet.apps.empty? %>
+  <h3>No Applications for <%= @pet.name %></h3>
+  <% else %>
+    <h3>Applicants:</h3>
+    <% @pet.apps.each do |applicant| %>
+      <%= link_to "#{applicant.name}", "/apps/#{applicant.id}" %>
+    <% end %>
+  <% end %>
+</section>
