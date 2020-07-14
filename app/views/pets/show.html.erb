@@ -17,6 +17,8 @@
 
     <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
 
+    <%= link_to "Applications", "/pets/#{@pet.id}/apps" %><br><br>
+
     <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br><br>
 
     <%= button_to "Delete Pet", "/pets/#{@pet.id}", method: :delete %>

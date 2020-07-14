@@ -6,11 +6,11 @@ RSpec.describe "application show page" do
     @dog = Pet.create!(name: "Jake", age: 4, sex: "male", image: "https://epi.azureedge.net/website-images/images/default-album/standard-poodle.jpg?sfvrsn=abed37b_2", shelter_id: @shelter_1.id)
     @dog2 = Pet.create!(name: "Charley", age: 5, sex: "male", image: "https://www.pennmedicine.org/news/-/media/images/pr%20news/news/2018/may/summerdog.ashx?h=263&w=400&la=en", shelter_id: @shelter_1.id)
     @app = App.create!(name: "John",
-      address: "123 Main St", city: "Denver", state: "CO", zip: "80202", phone_number: "918-233-9000",
+      address: "123 Main St", city: "Denver", state: "CO", zip: "80202", phone_number: "123-456-7890",
       description: "I like dogs", pet_ids: ["#{@dog.id}", "#{@dog2.id}"])
 
     visit "/apps/#{@app.id}"
-    
+
     expect(page).to have_content(@app.name)
     expect(page).to have_content(@app.address)
     expect(page).to have_content(@app.city)
