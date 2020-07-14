@@ -37,9 +37,15 @@ class SheltersController < ApplicationController
 
   def destroy
     shelter = Shelter.find(params[:id])
-    shelter.reviews.delete_all
-    shelter.destroy
-    redirect_to "/shelters"
+    if shelter.pending_pets == []
+      shelter.reviews.delete_all
+      shelter.pets.delete_all
+      shelter.destroy
+      redirect_to "/shelters"
+    else
+      flash.alert = "Cannot delete shelter. Pets are pending"
+      redirect_to "/shelters/#{shelter.id}"
+    end
   end
 
   def pets_index

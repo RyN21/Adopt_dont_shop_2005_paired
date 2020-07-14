@@ -14,6 +14,12 @@ class Shelter < ApplicationRecord
     end
   end
 
+  def pending_pets
+    pets.find_all do |pet|
+      pet.status == false
+    end
+  end
+
   def pet_count
     pets.count
   end
