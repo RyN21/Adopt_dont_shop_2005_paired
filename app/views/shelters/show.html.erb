@@ -8,6 +8,9 @@
     <p>City: <%= @shelter.city %></p><br>
     <p>State: <%= @shelter.state %></p><br>
     <p>Zip code: <%= @shelter.zip_code %></p><br><br>
+    <p>Number of pets: <%= @shelter.pet_count%></p>
+    <p>This shelters average rating is: <%= @shelter.average_rating %></p>
+
 
     <h2><%= link_to "Available Pets", "/shelters/#{@shelter.id}/pets" %></h2>
 

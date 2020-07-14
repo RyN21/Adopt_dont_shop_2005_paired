@@ -39,7 +39,9 @@ RSpec.describe "Shelter show page" do
     visit "/shelters/#{@shelter_1.id}"
 
     expect(@shelter_1.pet_count).to eq(3)
+    expect(page).to have_content(3)
     expect(@shelter_1.average_rating).to eq(4.5)
+    expect(page).to have_content(4.5)
     # expect(@shelter_1.number_of_applications_on_file).to eq(2)
   end
 end
