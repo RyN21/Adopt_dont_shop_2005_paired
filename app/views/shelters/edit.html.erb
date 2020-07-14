@@ -2,7 +2,7 @@
 
 
   <section class="form">
-    <h1>Edit <%= @shelter.name %></h1>
+    <h1>Edit <%= link_to @shelter.name, "/shelters/#{@shelter.id}" %></h1>
 
     <%= form_tag "/shelters/#{@shelter.id}", method: :patch do %>
       <%= label_tag :name %><br>

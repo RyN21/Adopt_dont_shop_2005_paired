@@ -2,7 +2,7 @@
 
 
   <section class="index">
-    <h1><%= "#{@shelter.name} Available Pets!" %></h1>
+    <h1><%= link_to @shelter.name, "/shelters/#{@shelter.id}" %> Available Pets!</h1>
 
     <% @pets.each do |pet| %>
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>

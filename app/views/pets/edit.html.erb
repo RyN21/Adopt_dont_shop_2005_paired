@@ -1,7 +1,7 @@
 <% content_for :title, "Edit Pet - Adopt Don't Shop" %>
 
   <section class="form">
-    <h1>Edit <%= @pet.name %></h1>
+    <h1>Edit <%= link_to @pet.name, "/pets/#{@pet.id}" %></h1>
 
     <%= form_tag "/pets/#{@pet.id}", method: :patch do %>
       <%= label_tag :name %>
