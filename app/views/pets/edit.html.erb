@@ -3,17 +3,9 @@
   <section class="form">
     <h1>Edit <%= link_to @pet.name, "/pets/#{@pet.id}" %></h1>
 
-    <%= form_tag "/pets/#{@pet.id}", method: :patch do %>
-      <%= label_tag :name %>
-      <%= text_field_tag :name, nil, placeholder: "#{@pet.name}" %>
-      <%= label_tag :age %>
-      <%= text_field_tag :age, nil, placeholder: "#{@pet.age}" %>
-      <%= label_tag :sex %>
-      <%= text_field_tag :sex, nil, placeholder: "#{@pet.sex}" %>
-      <%= label_tag :description %>
-      <%= text_field_tag :description, nil, placeholder: "#{@pet.description}" %>
-      <%= label_tag :image %>
-      <%= text_field_tag :image, nil, placeholder: "#{@pet.image}" %>
-      <%= submit_tag "Update Pet" %>
-    <% end %>
+
+    <%= render partial: 'pet_form', locals: { path: "/pets/#{@pet.id}",
+                                              method: :patch,
+                                              button: "Update Pet",
+                                              pet: @pet } %>
   </section>

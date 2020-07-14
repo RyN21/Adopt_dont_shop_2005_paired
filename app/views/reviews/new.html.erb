@@ -18,6 +18,6 @@
 <% end %>
 
 <%= render partial: 'review_form', locals: { path: "/shelters/#{@shelter.id}/reviews",
-                                            method: :post,
-                                            button: "Submit",
-                                            review: @review = Review.new } %>
+                                             method: :post,
+                                             button: "Submit",
+                                             review: @review = Review.new } %>
