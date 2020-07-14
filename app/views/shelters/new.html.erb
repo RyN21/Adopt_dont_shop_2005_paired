@@ -4,17 +4,9 @@
   <section class="form">
     <h1>Create a New Shelter </h1>
 
-    <%= form_tag "/shelters" do %>
-      <%= label_tag :name %><br>
-      <%= text_field_tag :name %><br><br>
-      <%= label_tag :address %><br>
-      <%= text_field_tag :address %><br><br>
-      <%= label_tag :city %><br>
-      <%= text_field_tag :city %><br><br>
-      <%= label_tag :state %><br>
-      <%= text_field_tag :state %><br><br>
-      <%= label_tag :zip_code %><br>
-      <%= text_field_tag :zip_code %><br><br>
-      <%= submit_tag "Create Shelter" %>
-    <% end %>
+    <%= render partial: 'shelter_form', locals: { path: '/shelters',
+                                                  method: :post,
+                                                  button: 'Create Shelter',
+                                                  shelter: @shelter = Shelter.new} %>
+
   </section>
