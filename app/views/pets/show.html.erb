@@ -11,7 +11,7 @@
       <% if @pet.status %>
       Adoptable
       <% else %>
-      Adoption Pending
+      Adoption Pending. On Hold for <%= @app.name %>
       <%  end %></p>
     <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
 
