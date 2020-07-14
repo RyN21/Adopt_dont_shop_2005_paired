@@ -34,7 +34,24 @@ RSpec.describe "application show page" do
     expect(page).to have_button("Approve Application for #{@dog.name}")
     expect(page).to have_button("Approve Application for #{@dog2.name}")
 
-    
+
+    click_on "Approve Application for #{@dog.name}"
+
+    expect(current_path).to eq("/pets/#{@dog.id}")
+
+    expect(page).to have_content("Adoption Status: Adoption Pending")
+    expect(page).to have_content("On Hold for #{@app.name}")
+  end
+  it "can approve multiple pets for the same application" do
+    @app2 = App.create!(name: "Karl",
+      address: "12 Dog Ave", city: "Denver", state: "CO", zip: "80202", phone_number: "098-765-4321",
+      description: "I, too, like dogs", pet_ids: ["#{@dog.id}"])
+
+    visit "/apps/#{@app.id}"
+
+    expect(page).to have_button("Approve Application for #{@dog.name}")
+    expect(page).to have_button("Approve Application for #{@dog2.name}")
+
     click_on "Approve Application for #{@dog.name}"
 
     expect(current_path).to eq("/pets/#{@dog.id}")
@@ -42,5 +59,13 @@ RSpec.describe "application show page" do
     expect(page).to have_content("Adoption Status: Adoption Pending")
     expect(page).to have_content("On Hold for #{@app.name}")
 
+    visit "/apps/#{@app.id}"
+
+    click_on "Approve Application for #{@dog2.name}"
+
+    expect(current_path).to eq("/pets/#{@dog2.id}")
+
+    expect(page).to have_content("Adoption Status: Adoption Pending")
+    expect(page).to have_content("On Hold for #{@app.name}")
   end
 end
