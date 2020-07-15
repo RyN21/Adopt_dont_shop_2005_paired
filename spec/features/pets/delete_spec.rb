@@ -9,6 +9,12 @@ RSpec.describe "pet show page" do
 
   it "allows visitor to delete pet" do
 
+    visit "/pets/#{@dog2.id}"
+
+    within(".show") do
+      click_button "Add to Favorites"
+    end
+
     visit "/pets"
     expect(page).to have_content("Jake")
 
