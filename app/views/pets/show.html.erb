@@ -15,7 +15,7 @@
       <%  end %></p>
     <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
 
-    <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %>
+    <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %><br>
 
     <%= link_to "Applications", "/pets/#{@pet.id}/apps" %><br><br>
 

@@ -49,7 +49,16 @@ section img {
   max-width: 400px;
   height: auto;
 }
-
+.show {
+  background: lightgrey;
+  margin: 30px;
+  padding: 10px
+}
+.form {
+  background: lightgrey;
+  margin: 30px;
+  padding: 10px
+}
 .reviews {
   background-color: 	#c0c0c0
 }
