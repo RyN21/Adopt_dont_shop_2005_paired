@@ -13,9 +13,9 @@
       <% else %>
       Adoption Pending. On Hold for <%= @app.name %>
       <%  end %></p>
-    <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p>
+    <p>Shelter: <%= link_to "#{@pet.shelter.name}", "/shelters/#{@pet.shelter.id}" %></p><br><br>
 
-    <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %><br>
+    <%= button_to "Add to Favorites", "/favorites/#{@pet.id}", method: :patch %><br><br><br>
 
     <%= link_to "Applications", "/pets/#{@pet.id}/apps" %><br><br>
 
