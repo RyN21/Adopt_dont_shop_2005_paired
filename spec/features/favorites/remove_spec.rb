@@ -33,13 +33,3 @@ RSpec.describe "Remove a favorite from Favorites Page" do
 
   end
 end
-
-
-
-
-# Next to each pet, I see a button or link to remove that pet from my favorites
-# When I click on that button or link to remove a favorite
-# A delete request is sent to "/favorites/:pet_id"
-# And I'm redirected back to the favorites page where I no longer see that pet listed
-# And I also see that the favorites indicator has decremented by 1
-#

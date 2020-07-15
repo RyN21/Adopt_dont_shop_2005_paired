@@ -49,14 +49,3 @@ RSpec.describe "pet show page" do
     expect(page).to have_content("Favorites: 1")
   end
 end
-
-
-
-# [ ] done
-#
-# User Story 32, Deleting a pet removes it from favorites
-#
-# As a visitor
-# If I've added a pet to my favorites
-# When I try to delete that pet from the database
-# They are also removed from the favorites list

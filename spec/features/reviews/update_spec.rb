@@ -17,8 +17,6 @@ RSpec.describe "Edit a Shelter Review" do
       click_on "Edit #{@review_1.title}"
 
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
-      # expect(page).to have_content("TEST!")
-      # expect(page).to have_content(4)
 
       fill_in :title, with: "Sweet shelter!"
       fill_in :rating, with: 5

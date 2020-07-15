@@ -49,10 +49,3 @@ RSpec.describe 'new pet page' do
 
   end
 end
-
-# User Story 10, Shelter Pet Creation
-# - sex ('female' or 'male') make this a checkbox or radio?
-
-# Then a `POST` request is sent to '/shelters/:shelter_id/pets',
-# a new pet is created for that shelter,
-# that pet has a status of 'adoptable',
