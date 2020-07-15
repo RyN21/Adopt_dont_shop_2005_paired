@@ -7,12 +7,13 @@
     <p> No shelters have been added. </p> <% if @shelters == [] %>
     <% else %>
       <% @shelters.each do |shelter| %>
-        <h2><%= link_to shelter.name, "/shelters/#{shelter.id}" %></h2><br>
+        <h2><%= link_to shelter.name, "/shelters/#{shelter.id}" %></h2>
         <p><%= link_to "Edit #{shelter.name}", "/shelters/#{shelter.id}/edit" %></p>
-        <p><%= button_to "Delete #{shelter.name}", "/shelters/#{shelter.id}", method: :delete %></p><br><br>
-
+        <p><%= button_to "Delete #{shelter.name}", "/shelters/#{shelter.id}", method: :delete %></p>
       <% end %>
     <% end %>
     <br><br>
+  </section>
+  <section>
     <%= link_to "New Shelter", "/shelters/new" %>
   </section>
