@@ -44,8 +44,3 @@ RSpec.describe "Navigation to shelter page" do
     expect(current_path).to eq("/shelters/#{shelter_2.id}")
   end
 end
-
-
-# within(".show") do
-#   click_button "Add to Favorites"
-# end

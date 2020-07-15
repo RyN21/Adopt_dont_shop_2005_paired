@@ -17,10 +17,7 @@ RSpec.describe "When a user adds pets to favorites" do
 
     expect(current_path).to eq("/pets/#{@dog.id}")
     expect(page).to have_content("You have added #{@dog.name} to your favorites.")
-
-    # within 'nav' do
-      expect(page).to have_content("Favorites: 1")
-    # end
+    expect(page).to have_content("Favorites: 1")
   end
 
   it "can't favorite a pet more than once" do
