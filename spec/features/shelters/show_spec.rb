@@ -42,19 +42,7 @@ RSpec.describe "Shelter show page" do
     expect(page).to have_content(3)
     expect(@shelter_1.average_rating).to eq(4.5)
     expect(page).to have_content(4.5)
-    # expect(@shelter_1.number_of_applications_on_file).to eq(2)
+    expect(@shelter_1.number_of_applications_on_file).to eq(0)
+    expect(page).to have_content(0)
   end
 end
-
-
-# *****************************
-# *****************************
-# *****************************
-# *****************************
-
-# - number of applications on file for that shelter
-
-# *****************************
-# *****************************
-# *****************************
-# *****************************

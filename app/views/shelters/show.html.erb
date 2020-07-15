@@ -10,6 +10,7 @@
     <p>Zip code: <%= @shelter.zip_code %></p><br><br>
     <p>Number of pets: <%= @shelter.pet_count%></p>
     <p>This shelters average rating is: <%= @shelter.average_rating %></p>
+    <p>Number of applications on file: <%= @shelter.number_of_applications_on_file %></p>
 
 
     <h2><%= link_to "Available Pets", "/shelters/#{@shelter.id}/pets" %></h2>

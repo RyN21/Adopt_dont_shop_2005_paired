@@ -7,7 +7,6 @@
     <%= render partial: 'shelter_form', locals: { path: '/shelters',
                                                   method: :post,
                                                   button: 'Create Shelter',
-                                                  shelter: @shelter = Shelter.new} %>
+                                                  shelter: @shelter || @shelter = Shelter.new } %>
 
-  
   </section>

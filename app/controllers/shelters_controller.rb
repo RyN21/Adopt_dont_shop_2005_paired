@@ -12,11 +12,13 @@ class SheltersController < ApplicationController
   end
 
   def create
-    shelter = Shelter.new(shelter_params)
-    if shelter.save
+    @shelter = Shelter.new(shelter_params)
+    if @shelter.save
       redirect_to "/shelters"
-    else
-      flash.alert = "Need additional information"
+    else @shelter.errors.any?
+      flash.alert = @shelter.errors.full_messages.each do |msg|
+        msg
+      end
       redirect_to '/shelters/new'
     end
   end
@@ -26,20 +28,27 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:id])
-    if shelter.update(shelter_params)
-      redirect_to "/shelters/#{shelter.id}"
-    else
-      flash.alert = "Need additional information"
-      redirect_to "/shelters/#{shelter.id}/edit"
+    @shelter = Shelter.find(params[:id])
+    if @shelter.update(shelter_params)
+      redirect_to "/shelters/#{@shelter.id}"
+    else @shelter.errors.any?
+      flash.alert = @shelter.errors.full_messages.each do |msg|
+        msg
+      end
+      redirect_to "/shelters/#{@shelter.id}/edit"
     end
   end
 
   def destroy
     shelter = Shelter.find(params[:id])
     if shelter.pending_pets == []
-      shelter.reviews.delete_all
-      shelter.pets.delete_all
+      shelter.pets.each do |pet|
+        if session[:favorite].include?(pet.id.to_s)
+          session[:favorite].delete(pet.id.to_s)
+        end
+      end
+      shelter.pets.destroy_all
+      shelter.reviews.destroy_all
       shelter.destroy
       redirect_to "/shelters"
     else
@@ -50,7 +59,6 @@ class SheltersController < ApplicationController
 
   def pets_index
     @shelter = Shelter.find(params[:id])
-    @pets = @shelter.adoptable_pets #call in view
   end
 
   private

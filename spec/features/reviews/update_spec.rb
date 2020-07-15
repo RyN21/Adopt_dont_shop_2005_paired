@@ -17,8 +17,6 @@ RSpec.describe "Edit a Shelter Review" do
       click_on "Edit #{@review_1.title}"
 
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
-      # expect(page).to have_content("TEST!")
-      # expect(page).to have_content(4)
 
       fill_in :title, with: "Sweet shelter!"
       fill_in :rating, with: 5
@@ -34,7 +32,7 @@ RSpec.describe "Edit a Shelter Review" do
     end
   end
   describe "When a user fails to enter fill in a title, rating, or content when editing and tries to submit" do
-    it "flashes a message indicating the user need to add addition information" do
+    it "flashes a message indicating the user needs to add addition information" do
 
       visit "/reviews/#{@review_1.id}/edit"
       fill_in :title, with: "Awesome shelter"
@@ -44,7 +42,8 @@ RSpec.describe "Edit a Shelter Review" do
 
       click_button "Update Review"
 
-      expect(page).to have_content("Need additional information. Please fill in title, rating, and content to submit review.")
+      expect(page).to have_content("Rating can't be blank")
+      expect(page).to have_content("Content can't be blank")
       expect(current_path).to eq("/reviews/#{@review_1.id}/edit")
     end
   end

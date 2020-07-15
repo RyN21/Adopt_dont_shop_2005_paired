@@ -28,7 +28,11 @@ class Shelter < ApplicationRecord
     reviews.all.average(:rating)
   end
 
-  # def number_of_applications_on_fil
-  #   applications.count
-  # end
+  def number_of_applications_on_file
+    apps = []
+    pets.each do |pet|
+      apps << pet.apps
+    end
+    apps.flatten.count
+  end
 end
