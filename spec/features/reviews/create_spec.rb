@@ -4,8 +4,8 @@ RSpec.describe "Shelter review creatioin" do
   before :each do
     @shelter_1 = Shelter.create!(name: "Paw Pals", address: "123 Main Street", city: "Denver", state: "CO", zip_code: 80202)
   end
-  it "can create a new review" do
 
+  it "can create a new review" do
     visit "/shelters/#{@shelter_1.id}"
 
     click_on "Add Review"
@@ -23,9 +23,9 @@ RSpec.describe "Shelter review creatioin" do
     expect(page).to have_content("Awesome shelter")
     expect(page).to have_content("Would recommend this shelter to everyone")
   end
-  describe "When a visitor fails to enter all a title, rating, or content and tries to submit" do
-    it "flashes a message indicating the user need to add addition information" do
 
+  describe "When a visitor fails to enters a title, rating, or content or enters a wrong rating" do
+    it "flashes a message indicating the user need to add addition information" do
       visit "/shelters/#{@shelter_1.id}/reviews/new"
 
       fill_in :title, with: "Awesome shelter"
@@ -35,9 +35,22 @@ RSpec.describe "Shelter review creatioin" do
 
       click_button "Submit"
 
-      expect(page).to have_content("Need additional information. Please fill in title, rating, and content to submit review.")
-
+      expect(page).to have_content("Rating can't be blank")
+      expect(page).to have_content("Content can't be blank")
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
     end
+
+    # it "flashes a message indicating the user needs to fill out an appropriate rating" do
+    #   visit "/shelters/#{@shelter_1.id}/reviews/new"
+    #
+    #   fill_in :title, with: "Awesome shelter"
+    #   fill_in :rating, with: 9
+    #   fill_in :content, with: "Awesome shelter."
+    #   fill_in :image, with: ""
+    #
+    #   click_button "Submit"
+    #
+    #   expect(page).to have_button("Submit")
+    # end
   end
 end
