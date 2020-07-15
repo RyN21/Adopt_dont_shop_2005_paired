@@ -20,7 +20,7 @@
     <%= button_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %>
   </section><br><br><br><br>
 
-  <section>
+  <section class='reviews'>
     <h1>Reviews</h1>
     <%= link_to "Add Review", "/shelters/#{@shelter.id}/reviews/new" %><br><br>
     <% @shelter.reviews.each do |review| %>
