@@ -40,17 +40,17 @@ RSpec.describe "Shelter review creatioin" do
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
     end
 
-    # it "flashes a message indicating the user needs to fill out an appropriate rating" do
-    #   visit "/shelters/#{@shelter_1.id}/reviews/new"
-    #
-    #   fill_in :title, with: "Awesome shelter"
-    #   fill_in :rating, with: 9
-    #   fill_in :content, with: "Awesome shelter."
-    #   fill_in :image, with: ""
-    #
-    #   click_button "Submit"
-    #
-    #   expect(page).to have_button("Submit")
-    # end
+    it "flashes a message indicating the user needs to fill out an appropriate rating" do
+      visit "/shelters/#{@shelter_1.id}/reviews/new"
+
+      fill_in :title, with: "Awesome shelter"
+      fill_in :rating, with: 9
+      fill_in :content, with: ""
+      fill_in :image, with: ""
+
+      click_button "Submit"
+
+      expect(page).to have_button("Submit")
+    end
   end
 end

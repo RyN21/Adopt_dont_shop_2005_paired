@@ -9,7 +9,12 @@ class ReviewsController < ApplicationController
     @review = shelter.reviews.new(review_params)
     if @review.save
       redirect_to "/shelters/#{shelter.id}"
-    else @review.errors.any?
+    elsif @review.errors.any?
+      flash.alert = @review.errors.full_messages.each do |msg|
+        msg
+      end
+      redirect_to "/shelters/#{shelter.id}/reviews/new"
+    else @review != (1..5)
       flash.alert = @review.errors.full_messages.each do |msg|
         msg
       end
