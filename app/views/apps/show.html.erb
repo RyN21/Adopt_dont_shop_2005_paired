@@ -10,6 +10,8 @@
   <p>Description: <%= @app.description %></p>
   <%  @app.pets.each do |pet| %>
     <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
-    <p><%= button_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/apps/#{@app.id}", method: :patch %>
+    <% if pet.status %>
+      <p><%= button_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/apps/#{@app.id}", method: :patch %>
+    <% end %>
   <% end %>
 </section>

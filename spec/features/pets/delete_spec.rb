@@ -4,7 +4,7 @@ RSpec.describe "pet show page" do
   before :each do
     @shelter_1 = Shelter.create!(name: "Paw Pals", address: "123 Main Street", city: "Denver", state: "CO", zip_code: 80202)
     @dog = Pet.create!(name: "Jake", age: 4, sex: "male", description: "He's a @dog", status: "Adoptable", shelter_id: @shelter_1.id, image: "https://epi.azureedge.net/website-images/images/default-album/standard-poodle.jpg?sfvrsn=abed37b_2")
-    @dog2 = Pet.create!(name: "Charley", age: 5, sex: "male", image: "https://www.pennmedicine.org/news/-/media/images/pr%20news/news/2018/may/summerdog.ashx?h=263&w=400&la=en", shelter_id: @shelter_1.id)
+    @dog2 = Pet.create!(name: "Charley", age: 5, sex: "male", image: "https://www.pennmedicine.org/news/-/media/images/pr%20news/news/2018/may/summerdog.ashx?h=263&w=400&la=en", shelter_id: @shelter_1.id, status: true)
 
   end
 
@@ -38,7 +38,7 @@ RSpec.describe "pet show page" do
     end
 
     visit "/pets/#{@dog.id}"
-    
+
     expect(page).to have_content("Favorites: 2")
 
     click_on "Delete Pet"
