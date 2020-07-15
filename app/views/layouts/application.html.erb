@@ -13,7 +13,7 @@
       <ul>
         <li><%= link_to "All Pets", "/pets" %></li>
         <li><%= link_to "All Shelters", "/shelters" %></li>
-        <li><%= link_to "Favorites:", '/favorites' %><%= " #{favorite.total_count}" %></li>
+        <li><%= link_to "Favorites: #{favorite.total_count}", '/favorites' %></li>
       </ul>
     </nav>
     <%  flash.each do |type, message| %>
