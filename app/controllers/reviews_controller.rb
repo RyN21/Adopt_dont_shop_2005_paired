@@ -22,13 +22,15 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
-    review.update(review_params)
-    if review.save
-      redirect_to "/shelters/#{review.shelter_id}"
-    else
-      flash.alert = "Need additional information.\nPlease fill in title, rating, and content to submit review."
-      redirect_to "/reviews/#{review.id}/edit"
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    if @review.save
+      redirect_to "/shelters/#{@review.shelter_id}"
+    else @review.errors.any?
+      flash.alert = @review.errors.full_messages.each do |msg|
+        msg
+      end
+      redirect_to "/reviews/#{@review.id}/edit"
     end
   end
 
