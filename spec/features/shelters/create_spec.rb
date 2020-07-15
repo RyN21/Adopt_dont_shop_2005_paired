@@ -22,11 +22,11 @@ RSpec.describe 'Create a new Shelter' do
     expect(page).to have_content("Paw Pals")
   end
 
-  it 'if not all information is filled out, a flash message appears' do
+  it 'if not all information is filled out, a message appears' do
     visit '/shelters/new'
 
     fill_in :name, with: "Paw Pals"
-    fill_in :address, with: "123 Main Street"
+    fill_in :address, with: ""
     fill_in :city, with: "Denver"
     fill_in :state, with: ""
     fill_in :zip_code, with: "80202"
@@ -35,6 +35,7 @@ RSpec.describe 'Create a new Shelter' do
 
 
     expect(current_path).to eq("/shelters/new")
-    expect(page).to have_content("Need additional information")
+    expect(page).to have_content("Address can't be blank")
+    expect(page).to have_content("State can't be blank")
   end
 end

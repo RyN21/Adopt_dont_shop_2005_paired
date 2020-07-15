@@ -44,30 +44,13 @@ RSpec.describe 'Shelter Update' do
     fill_in :name, with: "New Friends"
     fill_in :address, with: "7862 Ivy Ct"
     fill_in :city, with: ""
-    fill_in :state, with: "WY"
+    fill_in :state, with: ""
     fill_in :zip_code, with: 90210
 
     click_button "Update Shelter"
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit")
-    expect(page).to have_content("Need additional information")
+    expect(page).to have_content("City can't be blank")
+    expect(page).to have_content("State can't be blank")
   end
 end
-
-
-# **************************************
-# **************************************
-# **************************************
-# **************************************
-#
-# User Story 29, Flash Messages for Shelter Create and Update
-#
-# As a visitor
-# When I am updating or creating a new shelter
-# If I try to submit the form with incomplete information
-# I see a flash message indicating which field(s) I am missing
-#
-# **************************************
-# **************************************
-# **************************************
-# **************************************
