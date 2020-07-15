@@ -68,4 +68,39 @@ RSpec.describe "application show page" do
     expect(page).to have_content("Adoption Status: Adoption Pending")
     expect(page).to have_content("On Hold for #{@app.name}")
   end
+  it "cannot approve multiple applications for the same pet" do
+    @app2 = App.create!(name: "Karl",
+      address: "12 Dog Ave", city: "Denver", state: "CO", zip: "80202", phone_number: "098-765-4321",
+      description: "I, too, like dogs", pet_ids: ["#{@dog.id}"])
+
+    visit "/apps/#{@app.id}"
+
+    click_on "Approve Application for #{@dog.name}"
+
+    visit "/apps/#{@app2.id}"
+
+    expect(page).to_not have_button("Approve Application for #{@dog.name}")
+  end
+  it "allows application to be unapproved" do
+    visit "/apps/#{@app.id}"
+
+    click_button "Approve Application for #{@dog.name}"
+
+    visit "/apps/#{@app.id}"
+
+    expect(page).to_not have_button("Approve Application for #{@dog.name}")
+
+    expect(page).to have_button("Revoke Approval for #{@dog.name}")
+
+    click_button "Revoke Approval for #{@dog.name}"
+
+    expect(current_path).to eq("/apps/#{@app.id}")
+
+    expect(page).to have_button("Approve Application for #{@dog.name}")
+
+    visit "/pets/#{@dog.id}"
+
+    expect(page).to have_content("Adoption Status: Adoptable")
+    expect(page).to_not have_content("On Hold for")
+  end
 end
