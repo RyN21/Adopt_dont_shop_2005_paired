@@ -5,7 +5,7 @@
     <h1><%= link_to @shelter.name, "/shelters/#{@shelter.id}" %> Available Pets!</h1>
 
     <section class="pet_list">
-      <% @pets.each do |pet| %>
+      <% @shelter.adoptable_pets.each do |pet| %>
         <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
           <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
           <p>Age: <%= pet.age %></p>

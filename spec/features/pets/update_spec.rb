@@ -49,7 +49,7 @@ RSpec.describe "pet update page" do
     click_button "Update Pet"
 
     expect(current_path).to eq("/pets/#{@dog.id}/edit")
-    expect(page).to have_content("Additional information required")
+    expect(page).to have_content("Age can't be blank")
     expect(page).to have_content("Jake")
     expect(page).to_not have_content("Mr. Chomps")
     expect(page).to_not have_content("Age: 5")

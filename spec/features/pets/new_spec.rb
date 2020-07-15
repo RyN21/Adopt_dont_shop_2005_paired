@@ -35,16 +35,18 @@ RSpec.describe 'new pet page' do
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
 
     fill_in :name, with: "Karl"
-    fill_in :age, with: "6"
+    fill_in :age, with: ""
     fill_in :sex, with: ""
-    fill_in :description, with: "He is a dog"
+    fill_in :description, with: "He's a good dog"
     # page.choose('Male')
     fill_in :image, with: "https://image.apost.com/media/articletranslation/2018/08/14/10/41d704e47e7c8d6fdb710e451e98594c_500x1.jpg"
 
     click_button "Create Pet"
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/pets/new")
-    expect(page).to have_content("Additional information required")
+    expect(page).to have_content("Age can't be blank")
+    expect(page).to have_content("Sex can't be blank")
+
   end
 end
 

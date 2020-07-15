@@ -3,13 +3,16 @@
   <section class="index">
     <h1>All Pets</h1>
 
-    <% @pets.each do |pet| %>
-      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
-        <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
-        <p>Age: <%= pet.age %></p>
-        <p>Sex: <%= pet.sex %></p>
-        <p>Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
-        <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p>
-        <%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %><br>
+    <p> No pets have been added. </p> <% if @pets == [] %>
+    <% else %>
+      <% @pets.each do |pet| %>
+        <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+          <%= image_tag pet.image, alt: "Photo of #{pet.name}", title: "Photo of #{pet.name}" %>
+          <p>Age: <%= pet.age %></p>
+          <p>Sex: <%= pet.sex %></p>
+          <p>Shelter: <%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
+          <p><%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %></p>
+          <%= button_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %><br>
+      <% end %>
     <% end %>
   </section>
