@@ -80,6 +80,27 @@ RSpec.describe "application show page" do
     visit "/apps/#{@app2.id}"
 
     expect(page).to_not have_button("Approve Application for #{@dog.name}")
+  end
+  it "allows application to be unapproved" do
+    visit "/apps/#{@app.id}"
 
+    click_button "Approve Application for #{@dog.name}"
+
+    visit "/apps/#{@app.id}"
+
+    expect(page).to_not have_button("Approve Application for #{@dog.name}")
+
+    expect(page).to have_button("Revoke Approval for #{@dog.name}")
+
+    click_button "Revoke Approval for #{@dog.name}"
+
+    expect(current_path).to eq("/apps/#{@app.id}")
+
+    expect(page).to have_button("Approve Application for #{@dog.name}")
+
+    visit "/pets/#{@dog.id}"
+
+    expect(page).to have_content("Adoption Status: Adoptable")
+    expect(page).to_not have_content("On Hold for")
   end
 end
