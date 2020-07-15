@@ -9,6 +9,11 @@ RSpec.describe "When visiting a shelter show page" do
   end
 
   it "can destroy the shelter" do
+    @dog = Pet.create!(name: "Jake", age: 4, sex: "male", status: true, image: "https://epi.azureedge.net/website-images/images/default-album/standard-poodle.jpg?sfvrsn=abed37b_2", shelter_id: @shelter_1.id)
+
+    visit "/pets/#{@dog.id}"
+
+    click_button "Add to Favorites"
 
     visit "/shelters"
 
@@ -22,6 +27,7 @@ RSpec.describe "When visiting a shelter show page" do
 
     expect(current_path).to eq("/shelters")
     expect(page).to_not have_content(@shelter_1.name)
+    expect(page).to_not have_content("Favorites: 1")
   end
 
   it "deletes all the reviews associated with that shelter when shelter is deleted" do
@@ -49,5 +55,6 @@ RSpec.describe "When visiting a shelter show page" do
     expect(current_path).to eq("/shelters/#{@shelter_1.id}")
     expect(page).to have_content("Cannot delete shelter. Pets are pending")
     expect(page).to have_content(@shelter_1.name)
+
   end
 end
